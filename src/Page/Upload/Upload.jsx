@@ -10,7 +10,7 @@ function Upload() {
   const platform = localStorage.getItem("window");
   const [removeImg, setRemoveImg] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  console.log(process.env.REACT_APP_BASE_URL);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -21,16 +21,18 @@ function Upload() {
             setRemoveImg(imgUrl);
             setLoading(false);
           }
+        } else {
+          const formData = new FormData();
+          formData.append("image", imageUrl);
+          const response = await axios.post(
+            `${process.env.REACT_APP_BASE_URL}remove-background/create-image`,
+            formData
+          );
+          if (response) {
+            setRemoveImg(`data:image/png;base64,${response.data}`);
+            setLoading(false);
+          }
         }
-        // else {
-        //   const formData = new FormData();
-        //   formData.append("image", imageUrl);
-        //   const response = await axios.post(`${import.meta.env.VITE_BASE_URL}remove-background/create-image`, formData);
-        //   if (response) {
-        //     setRemoveImg(`data:image/png;base64,${response.data}`);
-        //     setLoading(false);
-        //   }
-        // }
       } catch (error) {
         console.error("Error:", error);
         setLoading(false); // Set loading to false in case of an error
