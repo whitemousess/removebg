@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Moveable from "react-moveable";
 
 import ImageMerge from "~/components/ImageMerge";
+import transparentImg from "~/assets/img/transparent.png";
 
 function MoveImage({
   removeImage,
@@ -11,13 +12,13 @@ function MoveImage({
   backgroundImage,
   backgroundColor,
   platform,
+  isDownload,
 }) {
   const removeRef = useRef(null);
   const backgroundRef = useRef(null);
 
   const [imageBackground, setImageBackground] = useState(null);
   const [imageRemoveBG, setImageRemoveBG] = useState(null);
-
   const [isMoveableVisibleRM, setMoveableVisibleRM] = useState(false);
   const [isMoveableVisibleBG, setMoveableVisibleBG] = useState(false);
   const [location, setLocation] = useState({
@@ -57,7 +58,7 @@ function MoveImage({
       background: { width: imgWidth, height: imgHeight },
     }));
   };
-  
+
   const getDimensions = () => {
     const imgElement = document.getElementById("remove");
     const width = imgElement.width;
@@ -80,13 +81,13 @@ function MoveImage({
   const handleBlurBG = () => {
     setMoveableVisibleBG(false);
   };
-  
+
   return (
     <div>
       <div className="w-full">
         <div
           style={{
-            backgroundImage: "url('/src/assets/img/transparent.png')",
+            backgroundImage: `url(${transparentImg})`,
             backgroundRepeat: "repeat",
             overflow: "hidden",
             width:
@@ -288,8 +289,8 @@ function MoveImage({
             </div>
           )}
         </div>
-
         <ImageMerge
+          isDownload={isDownload}
           location={location}
           rotation={rotation}
           zoom={zoom}

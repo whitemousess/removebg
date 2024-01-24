@@ -16,10 +16,10 @@ function DropImage({ onDrop }) {
   });
 
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full flex justify-center items-center">
       <div {...getRootProps()}>
         <input {...getInputProps()} />
-        {isDragActive && platform == "true" && (
+        {isDragActive && platform === "true" && (
           <div
             className="
               w-full 
@@ -41,14 +41,16 @@ function DropImage({ onDrop }) {
           </div>
         )}
         <div
-          className=" mt-20 flex flex-row justify-center items-center h-[52px] md:w-[200px] w-[200px]
-          text-2xl font-bold my-4 rounded-full bg-gradient-to-r-from-[#01dbaf]-to-[#002fe9] cursor-pointer"
+          className="my-10 flex flex-col justify-center items-center md:w-[200px] w-[200px]
+          text-2xl font-bold rounded-full cursor-pointer "
         >
-          <MdOutlineFileUpload size={30} />
-          {lang.titleButtonUpload}
+          <MdOutlineFileUpload size={64} />
+          <div className=" text-white bg-[#471aff] py-5 px-10 rounded-2xl">
+            {lang.titleButtonUpload}
+          </div>
         </div>
         <div className="text-xl">
-          {platform == "true" && lang.titleDropImage.Click}
+          {platform === "true" && lang.titleDropImage.Click}
         </div>
       </div>
     </div>

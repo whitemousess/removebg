@@ -10,7 +10,7 @@ function Upload() {
   const platform = localStorage.getItem("window");
   const [removeImg, setRemoveImg] = useState(null);
   const [loading, setLoading] = useState(true);
-  console.log(process.env.REACT_APP_BASE_URL);
+  
   useEffect(() => {
     const fetchData = async () => {
       try {

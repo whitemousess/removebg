@@ -11,6 +11,12 @@ const lang = {
 
   titleBtnOriginal: "Original",
   titleBtnRemove: "Remove background",
+
+  titleEdit: "Choose background color",
+  buttonEdit: "Edit background",
+  buttonImg: "Image",
+  buttonColor: "Color",
+  buttonDownload: "Download",
 };
 
 export default lang;
