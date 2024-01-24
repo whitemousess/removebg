@@ -15,6 +15,7 @@ function Upload() {
     const fetchData = async () => {
       try {
         if (platform === "true") {
+          console.log(imageUrl)
           const response = await removeBackground(imageUrl);
           if (response) {
             const imgUrl = URL.createObjectURL(response);
