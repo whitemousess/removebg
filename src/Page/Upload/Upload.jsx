@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import removeBackground from "@imgly/background-removal";
 import EditImage from "~/components/EditImage";
 
 function Upload() {
   const location = useLocation();
+  const navigate = useNavigate();
   const imageUrl = location?.state?.imageUrl;
   const platform = localStorage.getItem("window");
   const [removeImg, setRemoveImg] = useState(null);
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -35,12 +36,20 @@ function Upload() {
         }
       } catch (error) {
         console.error("Error:", error);
-        setLoading(false); // Set loading to false in case of an error
+        setLoading(false);
       }
     };
 
     fetchData();
   }, [imageUrl, platform]);
+
+  const onChangeImage = (e) => {
+    navigate("/upload", {
+      state: { imageUrl: e.target.files[0] },
+    });
+
+    window.location.reload();
+  };
 
   return (
     <EditImage
@@ -48,6 +57,7 @@ function Upload() {
       originalImage={imageUrl}
       loading={loading}
       platform={platform}
+      onChangeImage={onChangeImage}
     />
   );
 }

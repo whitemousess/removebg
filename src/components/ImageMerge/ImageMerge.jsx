@@ -78,7 +78,7 @@ function ImageMerge({
         const mergedImageURL = canvas.toDataURL("image/png");
         const downloadLink = document.createElement("a");
         downloadLink.href = mergedImageURL;
-        downloadLink.download = "merged_image.png";
+        downloadLink.download = "remove.png";
         downloadLink.style.display = "none";
         document.body.appendChild(downloadLink);
         downloadLink.click();

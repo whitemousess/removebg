@@ -1,6 +1,7 @@
 const lang = {
   titleWeb: "Remove Background Online Free",
   description: "Remove background from images Easily",
+  textLoading: "processing, please wait ...",
 
   titleDropImage: {
     Click: "Choose image or drop here",
@@ -16,7 +17,9 @@ const lang = {
   buttonEdit: "Edit background",
   buttonImg: "Image",
   buttonColor: "Color",
+  buttonClear: "No BG",
   buttonDownload: "Download",
+  buttonChangeImg: "Change image",
 };
 
 export default lang;
