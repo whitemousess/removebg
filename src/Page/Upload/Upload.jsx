@@ -16,9 +16,7 @@ function Upload() {
     const fetchData = async () => {
       try {
         if (platform === "true") {
-          const response = await removeBackground(imageUrl, {
-            mode: "no-cors",
-          });
+          const response = await removeBackground(imageUrl);
           if (response) {
             const imgUrl = URL.createObjectURL(response);
             setRemoveImg(imgUrl);
