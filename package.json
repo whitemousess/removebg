@@ -1,7 +1,7 @@
 {
   "name": "removebg",
   "version": "0.1.0",
-  "homepage": "https://whitemousess.github.io/removebg/",
+  "homepage": "/removebg/",
   "private": true,
   "dependencies": {
     "@imgly/background-removal": "^1.4.1",
