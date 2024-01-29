@@ -1,11 +1,11 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "~/Page/Home";
 import Upload from "~/Page/Upload";
 
 function MainLayout() {
   return (
-    <Router basename="/removebg">
+    <Router>
       <Routes>
         <Route path="/" Component={Home} />
         <Route path="/upload" Component={Upload} />
