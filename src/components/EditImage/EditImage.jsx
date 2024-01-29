@@ -8,7 +8,6 @@ import { MdOutlineFileUpload } from "react-icons/md";
 import lang from "~/assets/language";
 import Loading from "~/components/Loading";
 import MoveImage from "../MoveImage";
-import transparentImg from "~/assets/img/transparent.png";
 
 const COLOR_DEFAULT = [
   "#000",
@@ -33,7 +32,7 @@ function EditImage({
   const [backgroundImage, setBackgroundImage] = useState(null);
   const [listBackgroundImage, setListBackgroundImage] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [toggleEditColor, setToggleEditColor] = useState(true);
+  const [toggleEditColor, setToggleEditColor] = useState("image");
 
   const handleImageList = (e) => {
     if (e.target.files.length > 0) {
@@ -63,7 +62,7 @@ function EditImage({
 
   return (
     <div className="min-h-[100vh] w-full flex items-center bg-neutral-200">
-      <div className="flex flex-col w-full 2xl:h-full rounded-xl mx-4 py-10 2xl:mx-52 bg-white relative">
+      <div className="flex flex-col w-full md:h-full rounded-xl mx-4 py-10 2xl:mx-52 bg-white relative">
         <div className="w-full flex justify-center items-start">
           <div className="flex border h-16 rounded-full bg-gray-200 my-10">
             <button
@@ -87,8 +86,8 @@ function EditImage({
           </div>
         </div>
 
-        <div className="flex 2xl:flex-row flex-col">
-          <div className="flex justify-center items-center 2xl:w-1/2">
+        <div className="flex md:flex-row flex-col">
+          <div className="flex justify-center items-center md:w-1/2">
             <MoveImage
               removeImage={removeImage}
               originalImage={originalImage}
@@ -103,31 +102,42 @@ function EditImage({
             <div className=" flex justify-center items-center md:justify-start">
               <div className="flex border h-16 rounded-full bg-gray-200 my-10">
                 <button
-                  onClick={() => setToggleEditColor(true)}
+                  onClick={() => setToggleEditColor("image")}
                   className={`text-2xl px-10 border-none rounded-full flex items-center cursor-pointer ${
-                    toggleEditColor ? "bg-gray-800 text-white" : "bg-gray-200"
+                    toggleEditColor === "image"
+                      ? "bg-gray-800 text-white"
+                      : "bg-gray-200"
                   }`}
                 >
                   {lang.buttonImg}
                 </button>
                 <button
-                  onClick={() => setToggleEditColor(false)}
+                  onClick={() => setToggleEditColor("color")}
                   className={`text-2xl px-10 border-none rounded-full flex items-center cursor-pointer ${
-                    !toggleEditColor ? "bg-gray-800 text-white" : "bg-gray-200"
+                    toggleEditColor === "color"
+                      ? "bg-gray-800 text-white"
+                      : "bg-gray-200"
                   }`}
                 >
                   {lang.buttonColor}
                 </button>
                 <button
-                  className="w-[60px] h-[40px] rounded-full cursor-pointer border bg-gray-200"
-                  onClick={transparent}
+                  className={`w-[60px] h-[40px] rounded-full cursor-pointer border-none bg-gray-200 ${
+                    toggleEditColor === "remove"
+                      ? "bg-gray-800 text-white"
+                      : "bg-gray-200"
+                  }`}
+                  onClick={() => {
+                    transparent();
+                    setToggleEditColor("remove");
+                  }}
                 >
                   {lang.buttonClear}
                 </button>
               </div>
             </div>
 
-            {toggleEditColor ? (
+            {toggleEditColor === "image" && (
               <div className="flex flex-wrap my-6">
                 <label htmlFor="BG">
                   <span className="w-[10rem] h-[10rem] mx-4 flex justify-center items-center p-5 shadow-lg hover:shadow-inner rounded-3xl text-2xl font-semibold cursor-pointer">
@@ -170,7 +180,9 @@ function EditImage({
                     );
                   })}
               </div>
-            ) : (
+            )}
+
+            {toggleEditColor === "color" && (
               <div className="flex flex-wrap w-[200px] ml-4">
                 <label
                   htmlFor="color"
@@ -213,7 +225,8 @@ function EditImage({
                 ))}
               </div>
             )}
-            <div className="w-full flex justify-center mt-5">
+
+            <div className="w-full flex justify-start mt-5">
               <span
                 className="lg:w-[200px] font-bold w-full rounded-2xl cursor-pointer flex justify-center items-center px-6 py-4 border shadow shadow-[#0159ec] hover:shadow-inner"
                 onClick={onDownload}
@@ -223,9 +236,9 @@ function EditImage({
               </span>
             </div>
 
-            <div className="w-full flex justify-center mt-5">
-              <label htmlFor="changeImg">
-                <span className="lg:w-[200px] font-bold w-full rounded-2xl cursor-pointer flex justify-center items-center px-6 py-4 border shadow shadow-[#0159ec] hover:shadow-inner">
+            <div className="w-full flex justify-start mt-5">
+              <label htmlFor="changeImg" className="lg:w-[200px] w-full">
+                <span className="font-bold w-full rounded-2xl cursor-pointer flex justify-center items-center px-6 py-4 border shadow shadow-[#0159ec] hover:shadow-inner">
                   <MdOutlineFileUpload size={32} className="mr-2" />
                   {lang.buttonChangeImg}
                 </span>

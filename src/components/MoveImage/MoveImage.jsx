@@ -91,8 +91,8 @@ function MoveImage({
             backgroundRepeat: "repeat",
             overflow: "hidden",
             width:
-              platform == "true" ? size.remove.width : size.remove.width * 0.4,
-            height: platform == "true" ? 500 : 500 * 0.4,
+              platform == "true" ? size.remove.width : size.remove.width * 0.6,
+            height: platform == "true" ? 500 : 500 * 0.6,
             border: "1px solid #333",
             position: "relative",
           }}
@@ -100,7 +100,7 @@ function MoveImage({
           <div
             style={{
               position: "absolute",
-              transform: platform == "true" ? "scale(1)" : `scale(.4)`,
+              transform: platform == "true" ? "scale(1)" : `scale(0.6)`,
             }}
           >
             <img
@@ -180,7 +180,7 @@ function MoveImage({
           <div
             style={{
               position: "absolute",
-              transform: platform == "true" ? "scale(1)" : `scale(.4)`,
+              transform: platform == "true" ? "scale(1)" : `scale(0.6)`,
             }}
           >
             <img
@@ -251,7 +251,7 @@ function MoveImage({
             <div
               style={{
                 position: "absolute",
-                transform: platform == "true" ? "scale(1)" : `scale(.4)`,
+                transform: platform == "true" ? "scale(1)" : `scale(0.6)`,
               }}
             >
               <img
@@ -272,7 +272,7 @@ function MoveImage({
             <div
               style={{
                 position: "absolute",
-                transform: platform == "true" ? "scale(1)" : `scale(.4)`,
+                transform: platform == "true" ? "scale(1)" : `scale(0.6)`,
               }}
             >
               <img
